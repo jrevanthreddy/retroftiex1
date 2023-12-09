@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.bumptech.glide.Glide;
 import com.example.retrofitex1.BR;
+import com.example.retrofitex1.R;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

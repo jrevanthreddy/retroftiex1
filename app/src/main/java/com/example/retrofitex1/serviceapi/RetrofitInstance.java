@@ -11,7 +11,8 @@ public class RetrofitInstance {
     public static MovieApiService getService() {
 
         if (retrofit == null) {
-            retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+            retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create()).build();
         }
 
         return retrofit.create(MovieApiService.class);

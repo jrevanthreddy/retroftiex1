@@ -1,6 +1,7 @@
 package com.example.retrofitex1.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.retrofitex1.MovieDetails;
 import com.example.retrofitex1.R;
 import com.example.retrofitex1.databinding.MoviesItemListBinding;
 import com.example.retrofitex1.model.Movie;
@@ -19,7 +21,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     Context context;
     ArrayList<Movie> movieArrayList;
-
     public MovieAdapter(Context context, ArrayList<Movie> movieArrayList) {
         this.context = context;
         this.movieArrayList = movieArrayList;
@@ -56,10 +57,26 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             moviesItemListBinding.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    int postion = getAdapterPosition();
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Movie clickedMovie = movieArrayList.get(position);
+                        navigateToMovieDetails(clickedMovie);
+                    }
                 }
             });
         }
+    }
+    private void navigateToMovieDetails(Movie movie){
+        Intent intent = new Intent(context, MovieDetails.class);
+
+        intent.putExtra("image",movie.getPosterPath());
+        intent.putExtra("movieTitle",movie.getTitle());
+        intent.putExtra("overview",movie.getOverview());
+        intent.putExtra("backdropPath",movie.getBackdropPath());
+        intent.putExtra("releaseDate",movie.getReleaseDate());
+        intent.putExtra("originalLanguage",movie.getOriginalLanguage());
+        intent.putExtra("voteAverage",movie.getOriginalTitle());
+
+        context.startActivity(intent);
     }
 }

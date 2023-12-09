@@ -30,7 +30,6 @@ public class MovieRepository {
     public MutableLiveData<List<Movie>> getMutableLiveData(){
 
         MovieApiService movieApiService = RetrofitInstance.getService();
-
         Call<Result> call = movieApiService.getMovie(application.getApplicationContext().getString(R.string.api_key));
 
         call.enqueue(new Callback<Result>() {
